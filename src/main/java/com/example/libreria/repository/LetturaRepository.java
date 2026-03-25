@@ -1,0 +1,15 @@
+package com.example.libreria.repository;
+
+import com.example.libreria.entity.Lettura;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface LetturaRepository extends JpaRepository<Lettura,Integer> {
+    List<Lettura> findByLettoreIdLettore
+            (Integer idLettore);
+    List<Lettura> findByLibroIdLibro(Integer idLibro);
+    //per recuperare tutte le letture tramite gli idLibro e idLettore
+}
