@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public enum UserRoles {
     ADMINISTRATOR(
-            Set.of(UserPermission.ADMINGET,UserPermission.ADMINWRITE,UserPermission.USERGET, UserPermission.ADMINWRITE)),
-    SUBADMINISTRATOR(Set.of(UserPermission.ADMINGET,UserPermission.ADMINWRITE, UserPermission.USERGET, UserPermission.USERWRITE)),
+            Set.of(UserPermission.ADMINGET,UserPermission.ADMINWRITE,UserPermission.USERGET, UserPermission.USERWRITE)),
+    SUBADMINISTRATOR(Set.of(UserPermission.ADMINGET, UserPermission.USERGET, UserPermission.USERWRITE)),
     USER(Set.of(UserPermission.USERGET, UserPermission.USERWRITE));
 
     private final Set<UserPermission> permissions;

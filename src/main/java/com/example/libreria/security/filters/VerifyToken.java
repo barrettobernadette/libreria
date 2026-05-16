@@ -33,10 +33,7 @@ public class VerifyToken extends OncePerRequestFilter {
     public VerifyToken(SecurityService securityService) {
         this.securityService = securityService;
     }
-    @Override
-    protected void initBeanWrapper(BeanWrapper bw) throws BeansException {
-        super.initBeanWrapper(bw);
-    }
+
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException{
         String uri = request.getRequestURI();
@@ -70,17 +67,20 @@ public class VerifyToken extends OncePerRequestFilter {
 
         String subject = claims.getSubject();
 
+        //TODO chiamata a db per recuperare utente
         UserAccessData user = new UserAccessData();
-        user.setUsername("admin");
-        user.setUserRoles(UserRoles.ADMINISTRATOR);
-        Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
-
+        user.setUsername(subject);
+        user.setUserRoles(subject.equalsIgnoreCase("admin") ? UserRoles.ADMINISTRATOR : UserRoles.USER);
+        /*Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();*/
+        Set<SimpleGrantedAuthority> grantedAuthorities = user.getUserRoles().gSimpleGrantedAuthorities();
+/*
         if (subject.equals("admin")) {
             grantedAuthorities.addAll(user.getUserRoles().gSimpleGrantedAuthorities());
         } else {
             grantedAuthorities.addAll(UserRoles.USER.gSimpleGrantedAuthorities());
-        }
+        }*/
 
+        //Creazione istanza con stato authenticated: true --> vedi costruttore
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                 subject,
                 null,

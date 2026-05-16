@@ -8,22 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AutoreDTO {
-    private Integer idAutore;
-    private PersonaDTO persona;
-
-    public Integer getIdAutore() {
-        return idAutore;
-    }
-
-    public void setIdAutore(Integer idAutore) {
-        this.idAutore = idAutore;
-    }
-
-    public PersonaDTO getPersona() {
-        return persona;
-    }
-
-    public void setPersonaDto(PersonaDTO persona) {
-        this.persona = persona;
-    }
+    private Integer id;
+    private String nome;
+    private String cognome;
+    private String website;
 }

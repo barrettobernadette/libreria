@@ -2,7 +2,7 @@ package com.example.libreria.security.dto.enums;
 
 public enum UserPermission {
     ADMINGET("admin:get"),
-    ADMINWRITE("admi:write"),
+    ADMINWRITE("admin:write"),
     USERGET("user:get"),
     USERWRITE("user:write");
 

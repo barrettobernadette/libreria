@@ -3,6 +3,7 @@ package com.example.libreria.security.controller;
 import com.example.libreria.security.dto.UserAccessData;
 import com.example.libreria.security.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,17 +20,18 @@ public class SecurityController {
     SecurityService securityService;
 
     @PostMapping("/login")
-    public String login(@RequestBody UserAccessData user) {
+    public ResponseEntity<String> login(@RequestBody UserAccessData user) {
         String jwt = null;
 
+        //TODO chiamata a DB e recupero utenza con user.username == db.user.username
+
+        //TODO verifica password codificata
         Boolean isPasswordCorrect = securityService.checkPsw(user.getPassword());
 
-        if(!isPasswordCorrect) return null;
+        if(!isPasswordCorrect) return ResponseEntity.status(403).body(null);
 
-        Map<String, String> claims = new HashMap<>();
-        claims.put("subject", user.getUsername());
         jwt = securityService.generateJwt(user);
 
-        return jwt;
+        return ResponseEntity.ok(jwt);
     }
 }

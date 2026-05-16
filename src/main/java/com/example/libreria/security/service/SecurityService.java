@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.util.Date;
 
 @Service
 public class SecurityService {
@@ -24,6 +25,6 @@ public class SecurityService {
     }
 
     public String generateJwt(UserAccessData user) {
-        return Jwts.builder().subject(user.getUsername()).signWith(signingKey()).compact();
+        return Jwts.builder().subject(user.getUsername()).expiration(new Date()).signWith(signingKey()).compact();
     }
 }

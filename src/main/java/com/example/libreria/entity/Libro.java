@@ -30,7 +30,7 @@ public class Libro {
     private Genere genere;
 
     @ManyToOne
-    @JoinColumn(name = "idAutore")
+    @JoinColumn(name = "id_autore")
     @ToString.Exclude
     private Autore autore;
 

@@ -1,5 +1,6 @@
 package com.example.libreria.configuration;
 
+import com.example.libreria.security.dto.enums.UserPermission;
 import com.example.libreria.security.dto.enums.UserRoles;
 import com.example.libreria.security.filters.VerifyToken;
 import com.example.libreria.security.service.SecurityService;
@@ -25,10 +26,12 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         return http.cors(cors -> cors.configurationSource(request -> {
             CorsConfiguration configuration = new CorsConfiguration();
+/*            configuration.addAllowedOrigin("https://google.com/*");*/
             return configuration;
         }))
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/backoffice/*").hasRole(UserRoles.ADMINISTRATOR.name())
+                        .requestMatchers("/backoffice/edit-user").hasAuthority(UserPermission.ADMINWRITE.getPermission())
                         .anyRequest().authenticated())
                 .csrf(csrf -> csrf.disable())
                 .addFilterAfter(new VerifyToken(securityService), UsernamePasswordAuthenticationFilter.class)

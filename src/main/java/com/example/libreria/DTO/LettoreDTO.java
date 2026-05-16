@@ -8,22 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LettoreDTO {
-    private PersonaDTO persona;
-    private Integer readingGoal;
-
-    public PersonaDTO getPersona() {
-        return persona;
-    }
-
-    public void setPersona(PersonaDTO persona) {
-        this.persona = persona;
-    }
-
-    public Integer getReadingGoal() {
-        return readingGoal;
-    }
-
-    public void setReadingGoal(Integer readingGoal) {
-        this.readingGoal = readingGoal;
-    }
+    private Integer id;
+    private String nome;
+    private String cognome;
+    private String readingGoal;
 }
