@@ -14,40 +14,6 @@ public class LibroDTO {
     private String titolo;
     private String genere;
     private AutoreDTO autore;
-
-    public Integer getIdLibro() {
-        return idLibro;
-    }
-
-    public void setIdLibro(Integer idLibro) {
-        this.idLibro = idLibro;
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
-
-    public String getGenere() {
-        return genere;
-    }
-
-    public void setGenere(String genere) {
-        this.genere = genere;
-    }
-
-    public AutoreDTO getAutore() {
-        return autore;
-    }
-
-    public void setAutore(AutoreDTO autore) {
-        this.autore = autore;
-    }
-
-
-
+    private String copertinaUrl;
 }
 

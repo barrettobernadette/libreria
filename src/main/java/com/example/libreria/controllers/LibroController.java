@@ -16,7 +16,7 @@ public class LibroController {
     @Autowired
     private LibroService libroService;
 
-    @PostMapping(value = "/add", consumes = "application/json")
+    @PostMapping(value = "add", consumes = "application/json")
     public ResponseEntity<Boolean> addLibro(@RequestBody Libro libro) {
         boolean res = libroService.addLibro(libro);
         return ResponseEntity.ok(res);

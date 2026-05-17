@@ -68,10 +68,10 @@ public class LetturaService {
     }
 
     @Transactional
-    public Lettura getListaByIdLettore(Integer idLettore) throws IllegalAccessException {
+    public Lettura getListaByIdPersona(Integer idPersona) throws IllegalAccessException {
         List<Lettura> lista;
         try {
-            lista = letturaRepository.findByLettoreIdLettore(idLettore);
+            lista = letturaRepository.findByLettoreIdPersona(idPersona);
         } catch (Exception e) {
             throw new IllegalAccessException("Errore");
         }

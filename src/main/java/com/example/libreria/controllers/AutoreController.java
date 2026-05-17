@@ -16,7 +16,7 @@ import java.util.List;
 public class AutoreController {
     @Autowired
     private AutoreService autoreService;
-    @PostMapping(value = "/add", consumes = "application/json")
+    @PostMapping(value = "add", consumes = "application/json")
     public ResponseEntity<Boolean> addAutore(@RequestBody Autore autore) {
         boolean res = autoreService.addAutore(autore);
 

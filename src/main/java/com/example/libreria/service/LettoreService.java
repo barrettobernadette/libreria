@@ -3,7 +3,11 @@ package com.example.libreria.service;
 import com.example.libreria.DTO.LettoreDTO;
 import com.example.libreria.configuration.LettoreMapper;
 import com.example.libreria.entity.Lettore;
+import com.example.libreria.entity.Lettura;
+import com.example.libreria.entity.Libro;
 import com.example.libreria.repository.LettoreRepository;
+import com.example.libreria.repository.LetturaRepository;
+import com.example.libreria.repository.LibroRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +20,25 @@ public class LettoreService {
     @Autowired
     private  LettoreRepository lettoreRepository;
     @Autowired
+    private LibroRepository libroRepository;
+    @Autowired
+    private LetturaRepository letturaRepository;
+    @Autowired
     private LettoreMapper lettoreMapper;
+
+    @Transactional
     public boolean addLettore(Lettore lettore){
         try {
             lettoreRepository.save(lettore);
+            if(lettore.getLetture()!= null && !lettore.getLetture().isEmpty()) {
+                for (Lettura lettura : lettore.getLetture()) {
+                    Libro libro = libroRepository.findById(lettura.getLibro().getIdLibro()).orElseThrow(() -> new RuntimeException("Libro non trovato"));
+
+                    lettura.setLettore(lettore);
+                    lettura.setLibro(libro);
+                    letturaRepository.save(lettura);
+                }
+            }
         } catch (Exception e) {
             return false;
         }

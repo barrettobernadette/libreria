@@ -20,8 +20,8 @@ public class Lettura {
     private Integer idLettura;
 
     @ManyToOne
-    @JoinColumn(name = "id_lettore")
-    @ToString.Exclude
+    @JoinColumn(name = "id_persona")
+    @ToString.Exclude //serve a evitare che Lombok includa quel campo nel metodo toString() generato automaticamente
     private Lettore lettore;
 
     @ManyToOne
@@ -41,51 +41,4 @@ public class Lettura {
     @JsonProperty("commento")
     private String commento;
 
-    public Integer getIdLettura() {
-        return this.idLettura;
-    }
-
-    public void setIdLettura(Integer idLettura) {
-        this.idLettura = idLettura;
-    }
-
-    public Lettore getLettore() {
-        return this.lettore;
-    }
-
-    public void setLettore(Lettore lettore) {
-        this.lettore = lettore;
-    }
-
-    public Libro getLibro() {
-        return this.libro;
-    }
-
-    public void setLibro(Libro libro) {
-        this.libro = libro;
-    }
-
-    public LocalDate getDataLettura() {
-        return this.dataLettura;
-    }
-
-    public void setDataLettura(LocalDate dataLettura) {
-        this.dataLettura = dataLettura;
-    }
-
-    public Integer getValutazione() {
-        return this.valutazione;
-    }
-
-    public void setValutazione(Integer valutazione) {
-        this.valutazione = valutazione;
-    }
-
-    public String getCommento() {
-        return this.commento;
-    }
-
-    public  void setCommento(String commento) {
-        this.commento = commento;
-    }
 }

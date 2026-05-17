@@ -58,7 +58,7 @@ public class LetturaController {
     public ResponseEntity<Lettura> getByIdLettore(@RequestParam Integer id) throws IllegalAccessException {
         Lettura lettura;
         try {
-            lettura = letturaService.getListaByIdLettore(id);
+            lettura = letturaService.getListaByIdPersona(id);
         }catch (IllegalAccessException e) {
             return ResponseEntity.badRequest().body(null);
         }

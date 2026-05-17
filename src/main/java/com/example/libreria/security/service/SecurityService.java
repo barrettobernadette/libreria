@@ -25,6 +25,6 @@ public class SecurityService {
     }
 
     public String generateJwt(UserAccessData user) {
-        return Jwts.builder().subject(user.getUsername()).expiration(new Date()).signWith(signingKey()).compact();
+        return Jwts.builder().subject(user.getUsername()).signWith(signingKey()).compact();
     }
 }

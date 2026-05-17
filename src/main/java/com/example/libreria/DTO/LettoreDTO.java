@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LettoreDTO {
-    private Integer id;
+    private Integer idPersona;
     private String nome;
     private String cognome;
     private String readingGoal;

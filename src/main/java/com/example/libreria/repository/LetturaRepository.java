@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface LetturaRepository extends JpaRepository<Lettura,Integer> {
-    List<Lettura> findByLettoreIdLettore
-            (Integer idLettore);
+    List<Lettura> findByLettoreIdPersona
+            (Integer idPersona);
     List<Lettura> findByLibroIdLibro(Integer idLibro);
     //per recuperare tutte le letture tramite gli idLibro e idLettore
 }

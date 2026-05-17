@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AutoreDTO {
-    private Integer id;
+    private Integer idPersona;
     private String nome;
     private String cognome;
     private String website;
+    private String imgUrl;
 }

@@ -23,8 +23,9 @@ public class Autore extends Persona{
     @ToString.Exclude
     private List<Libro> libri;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAutore;
+
+    @Column(name = "img_url")
+    @JsonProperty("imgUrl")
+    private String imgUrl;
 
 }

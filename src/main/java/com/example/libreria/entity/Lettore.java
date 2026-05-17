@@ -23,7 +23,7 @@ public class Lettore extends Persona {
     @ToString.Exclude
     private List<Lettura> letture;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idLettore;
+
+    @OneToMany(mappedBy = "lettore")
+    private List<Valutazione> valutazioni;
 }

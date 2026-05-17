@@ -25,9 +25,12 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         return http.cors(cors -> cors.configurationSource(request -> {
-            CorsConfiguration configuration = new CorsConfiguration();
-/*            configuration.addAllowedOrigin("https://google.com/*");*/
-            return configuration;
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.addAllowedOrigin("http://localhost:4200");
+                    config.addAllowedMethod("*");
+                    config.addAllowedHeader("*");
+                    config.setAllowCredentials(true);
+                    return config;
         }))
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/backoffice/*").hasRole(UserRoles.ADMINISTRATOR.name())

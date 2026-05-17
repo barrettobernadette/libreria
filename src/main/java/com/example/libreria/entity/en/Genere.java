@@ -4,7 +4,8 @@ public enum Genere {
     FANTASY("FAN","fantasy"),
     ROMANCE("ROM","romance"),
     HORROR("HOR","horror"),
-    THRILLER("THR","thriller");
+    THRILLER("THR","thriller"),
+    ROMANTASY ("RMT","romantasy");
 
     private String codice;
     private String desc;

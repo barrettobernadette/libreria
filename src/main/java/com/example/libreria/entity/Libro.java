@@ -26,49 +26,23 @@ public class Libro {
     private String titolo;
 
     @Column(name = "genere")
-    @JsonProperty("genere")
+    @Enumerated(EnumType.STRING)
+//    @JsonProperty("genere")
     private Genere genere;
 
     @ManyToOne
-    @JoinColumn(name = "id_autore")
+    @JoinColumn(name = "id_persona") //FK verso Persona.idPersona
     @ToString.Exclude
     private Autore autore;
 
     @OneToMany(mappedBy = "libro")
     private List<Lettura> letture;
 
-    public Integer getIdLibro(){
-        return this.idLibro;
-    }
+    @OneToMany(mappedBy = "libro")
+    private List<Valutazione> valutazioni;
 
-    public String getTitolo(){
-        return this.titolo;
-    }
-
-    public void setTitolo(String titolo){
-        this.titolo = titolo;
-    }
-
-    public Genere getGenere(){
-        return this.genere;
-    }
-
-    public void setGenere( Genere genere){
-        this.genere = genere;
-    }
-
-    public Autore getAutore() {
-        return this.autore;
-    }
-
-    public void setAutore(Autore autore) {
-        this.autore = autore;
-    }
-
-    public List<Lettura> getListaLetture() {
-        return this.letture;
-    }
-
-
+    @Column(name = "copertina_url")
+    @JsonProperty("copertinaUrl")
+    private String copertinaUrl;
 
 }
