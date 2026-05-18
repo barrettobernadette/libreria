@@ -1,11 +1,13 @@
 package com.example.libreria.service;
 
 import com.example.libreria.DTO.LetturaDTO;
-import com.example.libreria.configuration.LetturaMapper;
+import com.example.libreria.mapper.LetturaMapper;
 import com.example.libreria.entity.Lettore;
 import com.example.libreria.entity.Lettura;
 import com.example.libreria.entity.Libro;
+import com.example.libreria.repository.LettoreRepository;
 import com.example.libreria.repository.LetturaRepository;
+import com.example.libreria.repository.LibroRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +22,23 @@ public class LetturaService {
     private LetturaRepository letturaRepository;
     @Autowired
     private LetturaMapper letturaMapper;
+    @Autowired
+    private LibroRepository libroRepository;
+    @Autowired
+    private LettoreRepository lettoreRepository;
 
     @Autowired
     private ObjectMapper mapper;
 
     @Transactional
     public Boolean addLettura(Lettura lettura){
+        Libro libro = libroRepository.findById(lettura.getLibro().getIdLibro())
+                .orElseThrow(() ->new RuntimeException("Libro non trovato."));
+        Lettore lettore = lettoreRepository.findById(lettura.getLettore().getIdPersona())
+                .orElseThrow(()-> new RuntimeException("Lettore non trovato"));
         try {
+            lettura.setLibro(libro);
+            lettura.setLettore(lettore);
             letturaRepository.save(lettura);
         } catch (Exception e) {
             return false;

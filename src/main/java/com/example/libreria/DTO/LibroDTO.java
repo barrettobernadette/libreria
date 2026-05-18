@@ -15,5 +15,6 @@ public class LibroDTO {
     private String genere;
     private AutoreDTO autore;
     private String copertinaUrl;
+    private String descrizione;
 }
 

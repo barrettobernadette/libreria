@@ -1,7 +1,7 @@
 package com.example.libreria.service;
 
 import com.example.libreria.DTO.AutoreDTO;
-import com.example.libreria.configuration.AutoreMapper;
+import com.example.libreria.mapper.AutoreMapper;
 import com.example.libreria.entity.Autore;
 import com.example.libreria.repository.AutoreRepository;
 import jakarta.transaction.Transactional;

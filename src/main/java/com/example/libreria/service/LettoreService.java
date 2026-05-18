@@ -1,7 +1,7 @@
 package com.example.libreria.service;
 
 import com.example.libreria.DTO.LettoreDTO;
-import com.example.libreria.configuration.LettoreMapper;
+import com.example.libreria.mapper.LettoreMapper;
 import com.example.libreria.entity.Lettore;
 import com.example.libreria.entity.Lettura;
 import com.example.libreria.entity.Libro;

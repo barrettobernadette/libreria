@@ -1,10 +1,8 @@
-package com.example.libreria.configuration;
+package com.example.libreria.mapper;
 
 import com.example.libreria.DTO.AutoreDTO;
-import com.example.libreria.DTO.PersonaDTO;
 import com.example.libreria.entity.Autore;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 

@@ -33,12 +33,12 @@ public class Lettura {
     @JsonProperty("dataLettura")
     private LocalDate dataLettura;
 
-    @Column(name = "valutazione")
-    @JsonProperty("valutazione")
-    private Integer valutazione;
-
     @Column(name = "commento")
     @JsonProperty("commento")
     private String commento;
+
+    @Column(name = "valutazione")
+    @JsonProperty("valutazione")
+    private Integer valutazione;
 
 }

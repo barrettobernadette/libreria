@@ -1,4 +1,4 @@
-package com.example.libreria.configuration;
+package com.example.libreria.mapper;
 
 import com.example.libreria.DTO.LetturaDTO;
 import com.example.libreria.entity.Lettura;

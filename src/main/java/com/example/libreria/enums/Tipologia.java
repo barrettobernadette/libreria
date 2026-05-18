@@ -1,4 +1,4 @@
-package com.example.libreria.entity.en;
+package com.example.libreria.enums;
 
 public enum Tipologia {
 

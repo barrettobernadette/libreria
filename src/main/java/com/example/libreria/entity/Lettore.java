@@ -22,8 +22,4 @@ public class Lettore extends Persona {
     @OneToMany(mappedBy = "lettore")
     @ToString.Exclude
     private List<Lettura> letture;
-
-
-    @OneToMany(mappedBy = "lettore")
-    private List<Valutazione> valutazioni;
 }

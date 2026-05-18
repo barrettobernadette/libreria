@@ -2,7 +2,7 @@ package com.example.libreria.service;
 
 
 import com.example.libreria.DTO.LibroDTO;
-import com.example.libreria.configuration.LibroMapper;
+import com.example.libreria.mapper.LibroMapper;
 import com.example.libreria.entity.Libro;
 import com.example.libreria.repository.LibroRepository;
 import jakarta.transaction.Transactional;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LibroService {

@@ -1,6 +1,5 @@
 package com.example.libreria.entity;
 
-import com.example.libreria.entity.en.Tipologia;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

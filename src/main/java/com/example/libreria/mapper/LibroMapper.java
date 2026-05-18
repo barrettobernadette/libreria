@@ -1,4 +1,4 @@
-package com.example.libreria.configuration;
+package com.example.libreria.mapper;
 
 import com.example.libreria.DTO.LibroDTO;
 import com.example.libreria.entity.Libro;
