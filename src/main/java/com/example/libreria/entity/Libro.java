@@ -41,7 +41,7 @@ public class Libro {
     @JsonProperty("copertinaUrl")
     private String copertinaUrl;
 
-    @Column(name = "descrizione")
+    @Column(name = "descrizione",columnDefinition = "TEXT")
     @JsonProperty("descrizione")
     private String descrizione;
 

@@ -85,4 +85,14 @@ public class LetturaController {
         }
         return ResponseEntity.ok(res);
     }
+    @GetMapping(value = "top3")
+    public ResponseEntity<List<LetturaDTO>> getClassifica(){
+        List<LetturaDTO> res = null;
+        try {
+            res = letturaService.getClassifica();
+        }catch (IllegalAccessException e) {
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.ok(res);
+    }
 }

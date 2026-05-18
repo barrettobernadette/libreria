@@ -115,4 +115,14 @@ public class LetturaService {
             throw new IllegalAccessException("Errore");
         }
     }
+    @Transactional
+    public List<LetturaDTO> getClassifica() throws IllegalAccessException {
+        List<Lettura> lista;
+        try {
+            lista = letturaRepository.getClassifica();
+        } catch (Exception e) {
+            throw new IllegalAccessException("Errore");
+        }
+        return letturaMapper.toDtoList(lista);
+    }
 }
