@@ -22,4 +22,8 @@ public class Lettore extends Persona {
     @OneToMany(mappedBy = "lettore")
     @ToString.Exclude
     private List<Lettura> letture;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

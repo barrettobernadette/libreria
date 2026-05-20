@@ -23,9 +23,12 @@ public class Autore extends Persona{
     @ToString.Exclude
     private List<Libro> libri;
 
-
     @Column(name = "img_url")
     @JsonProperty("imgUrl")
     private String imgUrl;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

@@ -2,7 +2,7 @@ package com.example.libreria.security.filters;
 
 import com.example.libreria.security.dto.UserAccessData;
 import com.example.libreria.security.dto.enums.UserRoles;
-import com.example.libreria.security.service.SecurityService;
+import com.example.libreria.security.service.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.JwtParser;
@@ -11,9 +11,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,16 +19,15 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.security.core.Authentication;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Set;
 
 @Component
 public class VerifyToken extends OncePerRequestFilter {
 
-    private SecurityService securityService;
+    private JwtService jwtService;
 
-    public VerifyToken(SecurityService securityService) {
-        this.securityService = securityService;
+    public VerifyToken(JwtService jwtService) {
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -58,7 +54,7 @@ public class VerifyToken extends OncePerRequestFilter {
 
     private Authentication validateToken(String jwt) throws ServletException {
         Claims claims = null;
-        JwtParser jwtParser = Jwts.parser().verifyWith(securityService.signingKey()).build();
+        JwtParser jwtParser = Jwts.parser().verifyWith(jwtService.signingKey()).build();
         try {
             claims = jwtParser.parseSignedClaims(jwt).getPayload();
         } catch (JwtException | IllegalArgumentException e) {
