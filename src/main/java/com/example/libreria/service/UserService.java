@@ -16,12 +16,13 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void register(User user) {
+    public User register(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new RuntimeException("Username già presente");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+        return user;
     }
 
     public User getUser(String username) {

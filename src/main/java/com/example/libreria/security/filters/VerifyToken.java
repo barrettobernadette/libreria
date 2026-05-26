@@ -9,6 +9,7 @@ import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,17 +40,25 @@ public class VerifyToken extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        String authorizationHeader = request.getHeader("Authorization");
-        Boolean isAuthorizationHeaderPresent = authorizationHeader != null && authorizationHeader.startsWith("Bearer ");
-        if (isAuthorizationHeaderPresent) {
-            String jwt = authorizationHeader.substring(7);
+//        String authorizationHeader = request.getHeader("Authorization");
+//        Boolean isAuthorizationHeaderPresent = authorizationHeader != null && authorizationHeader.startsWith("Bearer ");
+//        if (isAuthorizationHeaderPresent) {
+//            String jwt = authorizationHeader.substring(7);
+//
+//            // Validate token and generate authentication holder
+//            Authentication authentication = validateToken(jwt);
+//            // Set authentication context
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//        }
+//        filterChain.doFilter(request, response);
+        //cookies
 
-            // Validate token and generate authentication holder
-            Authentication authentication = validateToken(jwt);
-            // Set authentication context
+        String token = extractToken(request);
+        if (token != null){
+            Authentication authentication = validateToken(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-        filterChain.doFilter(request, response);
+        filterChain.doFilter(request,response);
     }
 
     private Authentication validateToken(String jwt) throws ServletException {
@@ -82,5 +91,22 @@ public class VerifyToken extends OncePerRequestFilter {
                 null,
                 grantedAuthorities);
         return authentication;
+    }
+
+    private String extractToken(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("jwt")) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7);
+        }
+
+        return null;
     }
 }

@@ -1,9 +1,12 @@
 package com.example.libreria.security.controller;
 
+import com.example.libreria.DTO.SignupRequestDTO;
 import com.example.libreria.entity.User;
 import com.example.libreria.security.dto.UserAccessData;
 import com.example.libreria.security.service.SecurityService;
+import com.example.libreria.service.SignupService;
 import com.example.libreria.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +26,10 @@ public class SecurityController {
     SecurityService securityService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private SignupService signupService;
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public ResponseEntity<?> register(@RequestBody User user) {
         try {
             userService.register(user);
@@ -33,17 +38,21 @@ public class SecurityController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-        @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserAccessData userAccessData) {
-        String jwt = null;
+    @PostMapping("login")
+    public ResponseEntity<?> login(@RequestBody UserAccessData userAccessData, HttpServletResponse response) {
+        securityService.login(userAccessData,response);
+        return ResponseEntity.ok(Map.of("message","Login effettuato"));
+    }
 
-        //TODO chiamata a DB e recupero utenza con user.username == db.user.username
-        //User user = userService.getUser(userAccessData.getUsername());
-        //TODO verifica password codificata
-        //Boolean isPasswordCorrect = securityService.checkPsw(userAccessData,user);
+    @PostMapping("logout")
+    public ResponseEntity<Void> logout(HttpServletResponse response) {
+        securityService.logout(response);
+        return ResponseEntity.ok().build();
+    }
 
-        jwt = securityService.login(userAccessData);
-
-        return ResponseEntity.ok(jwt);
+    @PostMapping("signup")
+    public ResponseEntity<Void> signup(@RequestBody SignupRequestDTO request) {
+        signupService.register(request);
+        return ResponseEntity.ok().build();
     }
 }

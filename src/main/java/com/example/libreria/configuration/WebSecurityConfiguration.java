@@ -40,7 +40,7 @@ public class WebSecurityConfiguration {
                     config.setAllowCredentials(true);
                     return config;
         }))
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/auth/login","/auth/register").permitAll()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/auth/login","/auth/register","/auth/signup/**").permitAll()
                         .requestMatchers("/backoffice/*").hasRole(UserRoles.ADMINISTRATOR.name())
                         .requestMatchers("/backoffice/edit-user").hasAuthority(UserPermission.ADMINWRITE.getPermission())
                         .anyRequest().authenticated())
